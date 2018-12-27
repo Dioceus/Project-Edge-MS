@@ -13,11 +13,8 @@ from PIL import Image
 3. Segment the image (Cut into parts, use Spritesheets)
 4. Analyze each segment - Determine average lightness of each segment 
 5. If Segment Lightness is different than the average Lightness of the image, then count that as a lesion
-
-Problem:
-1. Precision: How do I know how to segment the image, into what sizes and how many images: lesions can vary in size
-2. Possibly the fact that the spots are not the only white things, so the image needs to check with surroundings
-
+5. a) If T1 - Weighted MRI Image - Look for dark spots - avg lightness of spots should be less than avg lightness of image 
+5. b) If T2 - Weighted MRI Image - Look for bright spots - avg lightness of spots should be greater than avg lightness of image 
 """
 
 def main(path, filename):
@@ -36,16 +33,23 @@ def main(path, filename):
     num_across = width / segment_width
     num_down = height / segment_height
     single_segments = []
-    num_lesions = 0
 
     for i in range(num_across):
          for j in range(num_down):
               single_segments.append(Segment(input_image, i * segment_width, j * segment_height, segment_width, segment_height)) 
-    
-    print(determine_lesions(n, single_segments))
+     
+     
+    type_of_mri = int(input("Which type of MRI is it? Enter 1 if T-1 Weighted MRI or 2 for T-2 Weighted MRI."))
+    print(determine_lesions(n, type_of_mri, avg_lightness, single_segments))
 
-def determine_lesions(num_segments, segmented_region = []):
+def determine_lesions(num_segments, MRI_type, img_avg_lightness, segmented_region = []):
+     num_lesions = 0 
      for count in range(num_segments):
-         if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) > 125:
-              num_lesions += 1
+          if MRI_type == 1: 
+               if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) < img_avg_lightness:
+                    num_lesions += 1
+          if MRI_type == 2:
+               if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) > img_avg_lightness:
+                    num_lesions += 1
      return num_lesions 
+

@@ -49,5 +49,3 @@ def determine_lesions(num_segments, segmented_region = []):
          if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) > 125:
               num_lesions += 1
      return num_lesions 
-
-

@@ -11,5 +11,3 @@ def get_average_lightness(input_file, x, y, width, height):
                         total_val += total_val + get_rgb(input_file, x, y)
         #total_val *= 3  
         return total_val/(width*height) 
-
-

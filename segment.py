@@ -43,8 +43,3 @@ class Segment:
  
         # Return the image
         return image
-        
-
-
-
-

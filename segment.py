@@ -24,11 +24,25 @@ class Segment:
     #width = 0
     #height = 0
     def _init_(self, input_image, x, y, width, height):
-        self.image = pygame.image.load(input_image).convert()
+        
+        self.image = self.get_image(pygame.image.load(input_image).convert(), x, y, width, height)
         self.x = x
         self.y = y
         self.width = width
-        self.height = height 
+        self.height = height
+        
+    def get_image(self, input_image, x, y, width, height):
+        """ Grab a single image out of a larger spritesheet
+            Pass in the x, y location of the sprite
+            and the width and height of the sprite. """
+        # Create a new blank image
+        image = self.image.Surface([width, height])
+ 
+        # Copy the sprite from the large sheet onto the smaller image
+        image.blit(input_image, (0, 0), (x, y, width, height))
+ 
+        # Return the image
+        return image
         
 
 

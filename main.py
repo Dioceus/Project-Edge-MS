@@ -17,9 +17,9 @@ from PIL import Image
 5. b) If T2 - Weighted MRI Image - Look for bright spots - avg lightness of spots should be greater than avg lightness of image 
 """
 
-def main(path, filename):
+def main(filename):
      
-    input_image = Image.open(path) 
+    input_image = Image.open(filename) 
     
     with Image.open(filename) as input_image: 
          width, height = input_image.size 
@@ -48,7 +48,8 @@ def determine_lesions(num_segments, MRI_type, img_avg_lightness, segmented_regio
           if MRI_type == 1: 
                if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) < img_avg_lightness:
                     num_lesions += 1
-          if MRI_type == 2:
+                    #segmented_region[count]
+          else:
                if get_average_lightness(segmented_region[count], segmented_region[count].x, segmented_region[count].y, segmented_region[count].width, segmented_region[count].height) > img_avg_lightness:
                     num_lesions += 1
      return num_lesions 

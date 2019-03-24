@@ -19,11 +19,12 @@ from PIL import Image
 
 def main(filename):
      
-    input_image = Image.open(filename) 
+    input_image = Image.open(filename)
     
     with Image.open(filename) as input_image: 
          width, height = input_image.size 
 
+    input_image = Image.open(filename)
     # Init variables, determine average lightness of the image 
     avg_lightness = get_average_lightness(input_image, 0, 0, width, height)
     segment_width = segment_division(input_image)[0] 
@@ -54,3 +55,5 @@ def determine_lesions(num_segments, MRI_type, img_avg_lightness, segmented_regio
                     num_lesions += 1
      return num_lesions 
 
+image = input("Please enter an image file ")
+main(image)

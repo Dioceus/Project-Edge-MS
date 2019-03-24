@@ -3,12 +3,13 @@ from PIL import Image
 
 def segment_division(input_image):
     size = input_image.size
+    print(size)
     """
     if size < 3:
         return [size, 1]
     """
     result = list()
-    for i in range(1, int(size ** 0.5) + 1):
+    for i in range(1, int(size[0] ** 0.5) + 1):
        div, mod = divmod(size, i)
        #ignore 1 and n itself as factors
        if mod == 0 and i != 1 and div != size:
@@ -42,4 +43,4 @@ class Segment:
         image.blit(input_image, (0, 0), (x, y, width, height))
  
         # Return the image
-        return image
+        return image    

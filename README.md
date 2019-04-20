@@ -2,7 +2,7 @@
 
 Here is the algorithm for non-coding contributors
 
-1. Enter image
+1. Enter image filepath
 2. Determine Average Lightness of an image (Sum of R,G,B) 
    by finding the sum of the R,G,B value of every pixel, and divide by number of pixels to get average Lightness
 3. Segment the image (Cut into parts, use Spritesheets)

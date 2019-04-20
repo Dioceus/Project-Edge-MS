@@ -3,14 +3,16 @@ from PIL import Image
 
 def segment_division(input_image):
     size = input_image.size
-    print(size)
+    area = size[0] * size[1]
+    #print(size)
     """
     if size < 3:
         return [size, 1]
     """
     result = list()
-    for i in range(1, int(size[0] ** 0.5) + 1):
-       div, mod = divmod(size, i)
+    x = int(area ** 0.5)
+    for i in range(1, x + 1):
+       div, mod = divmod(area, i) 
        #ignore 1 and n itself as factors
        if mod == 0 and i != 1 and div != size:
            result.append(div)

@@ -2,7 +2,6 @@ from PIL import Image
 
 def get_rgb(input_file, x, y): 
         #Determines the sum of r,g,b values from taking in an image
-        #image = Image.open(input_file)
         RGB = input_file.getpixel((x,y))
         r_value = RGB[0]
         g_value = RGB[1]
@@ -14,5 +13,4 @@ def get_average_lightness(input_file, x, y, width, height):
         for x in range(width):
                 for y in range(height):
                         total_val += get_rgb(input_file, x, y)
-        #total_val *= 3  
         return total_val/(width*height) 

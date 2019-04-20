@@ -53,5 +53,5 @@ def determine_lesions(num_segments, MRI_type, img_avg_lightness, segmented_regio
                     num_lesions += 1
      return num_lesions 
 
-image_path = input("Please enter an image file ")
+image_path = input("Please enter the image filepath for the MRI image you wish to analyze ")
 main(image_path)
